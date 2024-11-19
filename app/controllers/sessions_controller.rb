@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user&.authenticate(params[:session][:password])
-      debugger
       forwarding_url = session[:forwarding_url]
       reset_session
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
