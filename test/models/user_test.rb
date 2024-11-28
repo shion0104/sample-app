@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
@@ -26,7 +28,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'email should not be too long' do
-    @user.email = 'a' * 244 + '@example.com'
+    @user.email = "#{'a' * 244}@example.com"
     assert_not @user.valid?
   end
 
@@ -71,19 +73,19 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
-  test "authenticated? should return false for a user with nil digest" do
+  test 'authenticated? should return false for a user with nil digest' do
     assert_not @user.authenticated?(:remember, '')
   end
 
-  test "associated microposts should be destroyed" do
+  test 'associated microposts should be destroyed' do
     @user.save
-    @user.microposts.create!(content: "Lorem ipsum")
+    @user.microposts.create!(content: 'Lorem ipsum')
     assert_difference 'Micropost.count', -1 do
       @user.destroy
     end
   end
 
-  test "should follow and unfollow a user" do
+  test 'should follow and unfollow a user' do
     michael  = users(:michael)
     archer   = users(:archer)
     assert_not michael.following?(archer)
@@ -97,7 +99,7 @@ class UserTest < ActiveSupport::TestCase
     assert_not michael.following?(michael)
   end
 
-  test "feed should have the right posts" do
+  test 'feed should have the right posts' do
     michael = users(:michael)
     archer  = users(:archer)
     lana    = users(:lana)
