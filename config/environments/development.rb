@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
@@ -69,6 +71,6 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.action_mailer.raise_delivery_errors = false
-  host = 'localhost:3000'   
+  host = 'localhost:3000'
   config.action_mailer.default_url_options = { host: host, protocol: 'http' }
 end

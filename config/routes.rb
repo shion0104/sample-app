@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  resources :password_resets,     only: [:new, :create, :edit, :update]
+  resources :password_resets, only: %i[new create edit update]
   root   'static_pages#home'
   get    '/help',    to: 'static_pages#help'
   get    '/about',   to: 'static_pages#about'
@@ -15,7 +17,7 @@ Rails.application.routes.draw do
   end
   resources :users
   resources :account_activations, only: [:edit]
-  resources :microposts,          only: [:create, :destroy]
-  resources :relationships,       only: [:create, :destroy]
+  resources :microposts,          only: %i[create destroy]
+  resources :relationships,       only: %i[create destroy]
   get '/microposts', to: 'static_pages#home'
 end
